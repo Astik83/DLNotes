@@ -268,5 +268,210 @@ While modern techniques have reduced the need for this method, the concept still
 > **Greedy Layer-wise Unsupervised Pre-Training** trains each layer independently to learn robust feature hierarchies and provides strong weight initialization for effective fine-tuning — solving gradient and convergence issues in deep networks.
 
 ---
+# **Q4. What is Transfer Learning? Describe its working mechanism and explain how it can reduce training time and improve performance for computer vision tasks.**
+
+---
+
+## **Answer:**
+
+### **1️⃣ Definition:**
+
+**Transfer Learning** is a deep learning technique where a **model pre-trained on a large dataset** (like ImageNet) is **reused or adapted** for a new but related task. Instead of training from scratch, we **transfer the learned knowledge (weights/features)** from one domain to another.
+
+---
+
+### **2️⃣ Concept:**
+
+A pre-trained model has already learned **generic low-level features** such as:
+
+- **Early layers:** Edges, textures, shapes
+- **Middle layers:** Object parts, patterns  
+- **Deep layers:** Complex features, object representations
+
+These features are useful for many tasks — hence, we can **reuse them** instead of learning from zero.
+
+---
+
+### **3️⃣ Working Mechanism:**
+
+#### **Transfer Learning Process:**
+```mermaid
+flowchart TD
+    A[Large Source Dataset<br>e.g. ImageNet] --> B[Pre-trained Model<br>e.g. ResNet, VGG]
+    B --> C[Remove Final Layers]
+    C --> D[Add New Task-Specific Layers]
+    D --> E[Fine-tune on Target Data]
+    E --> F[Target Task Model]
+    
+    style A fill:#e1f5fe
+    style F fill:#e8f5e8
+```
+
+---
+
+### **4️⃣ Advantages in Computer Vision:**
+
+| **Benefit** | **Explanation** |
+|-------------|-----------------|
+| **Reduced Training Time** | Lower layers already trained; only top layers need fine-tuning |
+| **Better Accuracy** | Pre-trained weights capture rich, generalizable features |
+| **Less Data Required** | Works well even with small target datasets |
+| **Faster Convergence** | Starts closer to optimal solution |
+
+---
+
+### **5️⃣ Example:**
+
+- Using **ResNet-50 pre-trained on ImageNet** to classify **medical X-ray images** by training only the last few layers.
+
+---
+
+---
+
+# **Q5. Differentiate between Feature Extraction and Fine-Tuning in the context of Transfer Learning with suitable examples.**
+
+---
+
+## **Answer:**
+
+### **Comparison Table:**
+
+| **Aspect** | **Feature Extraction** | **Fine-Tuning** |
+|------------|------------------------|-----------------|
+| **Definition** | Use pre-trained model as fixed feature extractor | Unfreeze some layers and continue training |
+| **Layers Trained** | Only newly added classifier layers | Both classifier + some deep layers |
+| **Weights** | Pre-trained weights remain frozen | Pre-trained weights get updated |
+| **Computation** | Low cost | Higher cost |
+| **Data Needed** | Works with small datasets | Needs more data |
+| **Use Case** | Target similar to source domain | Target different from source |
+
+---
+
+### **Visual Comparison:**
+
+```mermaid
+flowchart TD
+    subgraph FeatureExtraction[Feature Extraction Approach]
+        A[Input] --> B[Frozen Pre-trained Layers<br>Weights: Fixed]
+        B --> C[Feature Vector]
+        C --> D[New Trainable Classifier<br>Weights: Updated]
+        D --> E[Output]
+    end
+    
+    subgraph FineTuning[Fine-Tuning Approach]
+        F[Input] --> G[Partially Frozen Layers<br>Some weights fixed]
+        G --> H[Trainable Layers<br>Weights updated]
+        H --> I[New Trainable Classifier<br>Weights updated]
+        I --> J[Output]
+    end
+    
+    style FeatureExtraction fill:#f3e5f5
+    style FineTuning fill:#e3f2fd
+```
+
+---
+
+### **Examples:**
+
+#### **Feature Extraction:**
+- Use VGG16 → remove last layer → extract 4096-dim features → train SVM classifier
+- **When:** Small flower dataset (1000 images), similar to ImageNet
+
+#### **Fine-Tuning:**
+- Unfreeze last 3 layers of ResNet and train on medical images
+- **When:** Large satellite image dataset, different from ImageNet
+
+---
+
+---
+
+# **Q6. Define Domain Adaptation. How does it differ from standard Transfer Learning? Provide one real-world example where domain adaptation is beneficial.**
+
+---
+
+## **Answer:**
+
+### **1️⃣ Definition:**
+
+**Domain Adaptation** is a subfield of Transfer Learning where the **source and target tasks are the same**, but the **data distributions are different**.
+
+**Formally:**
+```
+P_source(X) ≠ P_target(X)  but  Task_source = Task_target
+```
+
+---
+
+### **2️⃣ Key Differences:**
+
+```mermaid
+flowchart LR
+    subgraph TransferLearning[Transfer Learning]
+        A[Source Domain & Task<br>e.g. ImageNet Classification] --> 
+        B[Knowledge Transfer] --> 
+        C[Target Domain & Task<br>e.g. Medical Diagnosis<br>Different Task]
+    end
+    
+    subgraph DomainAdaptation[Domain Adaptation]
+        D[Source Domain<br>e.g. Synthetic Images] --> 
+        E[Domain Alignment] --> 
+        F[Target Domain<br>e.g. Real Images<br>Same Task: Object Detection]
+    end
+    
+    style TransferLearning fill:#fff3e0
+    style DomainAdaptation fill:#e8f5e8
+```
+
+---
+
+### **3️⃣ Detailed Comparison:**
+
+| **Aspect** | **Transfer Learning** | **Domain Adaptation** |
+|------------|----------------------|----------------------|
+| **Task** | Source and target tasks can be different | Task remains the same |
+| **Focus** | Transfer general knowledge | Adapt to distribution shift |
+| **Data** | Different tasks, may have different distributions | Same task, different distributions |
+| **Goal** | Leverage pre-trained features | Align source and target domains |
+
+---
+
+### **4️⃣ Domain Adaptation Techniques:**
+
+- **Feature Alignment:** MMD loss, CORAL
+- **Adversarial Learning:** Domain-Adversarial Neural Networks
+- **Self-training:** Pseudo-labeling on target domain
+
+---
+
+### **5️⃣ Real-World Example:**
+
+```mermaid
+flowchart TD
+    A[Synthetic Driving Images<br>Clean, perfect conditions] --> 
+    B[Domain Adaptation<br>Feature Distribution Alignment]
+    
+    C[Real-world Driving Images<br>Noise, weather, lighting variations] --> 
+    B --> 
+    D[Adapted Model<br>Works in both domains]
+    
+    style A fill:#ffebee
+    style C fill:#ffebee
+    style D fill:#e8f5e8
+```
+
+**Autonomous Driving:**
+- **Source Domain:** Synthetic driving images (clean, perfect conditions)
+- **Target Domain:** Real-world driving images (noise, weather, lighting variations)
+- **Challenge:** Model trained on synthetic data fails in real world due to domain shift
+- **Solution:** Domain adaptation aligns feature distributions between synthetic and real images
+
+---
+
+### **6️⃣ Key Takeaway:**
+
+> **Transfer Learning** focuses on transferring knowledge between **different tasks**, while **Domain Adaptation** focuses on **reducing distribution gaps** for the **same task**.
+
+---
+
 
 
