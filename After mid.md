@@ -8,8 +8,6 @@
 ### **1️⃣ Definition:**
 
 An **Autoencoder** is a type of **neural network** used for **unsupervised learning** that aims to **learn a compressed (latent) representation** of the input data and then **reconstruct it** as accurately as possible.
-A Regularized Autoencoder is a modified autoencoder that adds extra constraints or noise during training to prevent the model from simply copying the input.
-This helps the network learn robust, meaningful, and generalized feature representations instead of memorizing the data.
 
 It consists of two main parts:
 
@@ -98,7 +96,8 @@ The **bottleneck layer** forces the network to **learn a compact, meaningful rep
 
 ### **1️⃣ Regularized Autoencoders:**
 
-These are **modified Autoencoders** that include **constraints or noise** during training to prevent the network from simply copying the input and to make the learned representations more **robust and meaningful**
+A **Regularized Autoencoder** is a modified autoencoder that adds extra constraints or noise during training to prevent the model from simply copying the input.
+This helps the network learn robust, meaningful, and generalized feature representations instead of memorizing the data.
 
 ---
 
