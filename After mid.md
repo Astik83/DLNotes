@@ -472,6 +472,280 @@ flowchart TD
 > **Transfer Learning** focuses on transferring knowledge between **different tasks**, while **Domain Adaptation** focuses on **reducing distribution gaps** for the **same task**.
 
 ---
+# **Q7. Describe the architecture and working principle of a Generative Adversarial Network (GAN). Explain the roles of the Generator and the Discriminator.**
+
+---
+
+## **Answer:**
+
+### **1️⃣ Definition:**
+
+A **Generative Adversarial Network (GAN)** is a **deep learning model** designed to generate **new, realistic data samples** (e.g., images, text, or audio) similar to the training data.
+
+It was introduced by **Ian Goodfellow (2014)**.
+
+---
+
+### **2️⃣ Architecture:**
+
+GAN consists of **two neural networks** trained **simultaneously** in a **competitive setup** (adversarial process):
+
+```mermaid
+flowchart TD
+    A[Random Noise Vector z] --> B[Generator G]
+    B --> C[Fake Samples Gz]
+    
+    D[Real Training Data x] --> E[Discriminator D]
+    C --> E
+    
+    E --> F[Real or Fake?]
+    F --> G[Feedback to Improve G]
+    F --> H[Feedback to Improve D]
+    
+    style B fill:#e8f5e8
+    style E fill:#ffebee
+```
+
+1. **Generator (G):**
+   - Creates **fake data samples** from random noise
+   - Learns to **mimic the real data distribution**
+
+2. **Discriminator (D):**
+   - A binary classifier that **distinguishes between real and fake samples**
+   - Learns to correctly identify whether an input is real or generated
+
+---
+
+### **3️⃣ Working Principle (Adversarial Training):**
+
+#### **Training Process:**
+```mermaid
+flowchart TD
+    subgraph Step1[Step 1: Train Discriminator]
+        A1[Real Data x] --> B1[Discriminator D]
+        A2[Fake Data Gz] --> B1
+        B1 --> C1[Real/Fake Prediction]
+        C1 --> D1[Update D to improve classification]
+    end
+    
+    subgraph Step2[Step 2: Train Generator]
+        E[Random Noise z] --> F[Generator G]
+        F --> G[Fake Data Gz]
+        G --> H[Discriminator D]
+        H --> I[Prediction D(Gz)]
+        I --> J[Update G to fool D]
+    end
+    
+    Step1 --> Step2
+```
+
+**Mathematical Formulation - Min-Max Game:**
+```
+min_G max_D V(D,G) = E[log D(x)] + E[log(1 - D(G(z)))]
+```
+
+Where:
+- `E[log D(x)]`: Discriminator's ability to identify real data
+- `E[log(1 - D(G(z)))]`: Discriminator's ability to detect fake data
+
+---
+
+### **4️⃣ Roles:**
+
+| **Component** | **Role / Function** | **Analogy** |
+|---------------|---------------------|-------------|
+| **Generator (G)** | Learns to map random noise → realistic data | **Counterfeiter** creating fake money |
+| **Discriminator (D)** | Learns to detect fake data from real | **Police** detecting counterfeit money |
+
+---
+
+### **5️⃣ Training Dynamics:**
+
+```mermaid
+graph LR
+    A[Initial State<br>Poor Generator] --> B[Training Progress<br>Both Improve] --> C[Equilibrium<br>Perfect Generator]
+    
+    D[Discriminator<br>Easy to distinguish] --> E[Adversarial<br>Competition] --> F[Discriminator<br>Cannot distinguish]
+```
+
+---
+
+### **6️⃣ Applications:**
+
+- **Image Generation:** Realistic human faces, artworks
+- **Data Augmentation:** Synthetic medical images
+- **Style Transfer:** Image-to-image translation
+- **Super Resolution:** Enhancing image quality
+
+---
+
+### **7️⃣ Key Idea:**
+
+> The Generator and Discriminator play a **two-player minimax game**, where both improve together until the generated data becomes indistinguishable from real data.
+
+---
+
+---
+
+# **Q8. What are Transformers in Deep Learning? Explain the concept of self-attention and how it improves performance over recurrent models for sequence tasks.**
+
+---
+
+## **Answer:**
+
+### **1️⃣ Definition:**
+
+A **Transformer** is a **deep learning architecture** introduced by *Vaswani et al. (2017)* in the paper **"Attention is All You Need."**
+
+It is designed for **sequence-to-sequence tasks** such as **machine translation**, **text summarization**, and **language modeling**, without using recurrence (RNN) or convolution (CNN).
+
+---
+
+### **2️⃣ Architecture Overview:**
+
+```mermaid
+flowchart TD
+    A[Input Sequence] --> B[Encoder Stack]
+    B --> C[Context Representation]
+    
+    D[Output Sequence<br>so far] --> E[Decoder Stack]
+    C --> E
+    E --> F[Next Token Prediction]
+    
+    subgraph B [Encoder]
+        B1[Input Embedding] --> B2[Positional Encoding]
+        B2 --> B3[Multi-Head Attention]
+        B3 --> B4[Feed Forward]
+        B4 --> B5[Layer Norm]
+    end
+    
+    subgraph E [Decoder]
+        E1[Output Embedding] --> E2[Positional Encoding]
+        E2 --> E3[Masked Multi-Head Attention]
+        E3 --> E4[Multi-Head Attention]
+        E4 --> E5[Feed Forward]
+        E5 --> E6[Layer Norm]
+    end
+```
+
+---
+
+### **3️⃣ Concept of Self-Attention:**
+
+Self-Attention allows the model to **weigh the importance of different words** in a sequence **relative to each other** when encoding a word.
+
+#### **Self-Attention Mechanism:**
+```mermaid
+flowchart LR
+    A[Input Vectors] --> B[Linear Transformations]
+    
+    B --> C[Query Q]
+    B --> D[Key K]
+    B --> E[Value V]
+    
+    C --> F[Q × Kᵀ]
+    D --> F
+    F --> G[Softmax<br>Attention Weights]
+    G --> H[Weighted Sum<br>with V]
+    E --> H
+    H --> I[Output]
+```
+
+**Mathematical Formulation:**
+```
+Attention(Q, K, V) = softmax(QKᵀ/√dₖ)V
+```
+
+**Example:** In the sentence *"The cat sat on the mat"*
+- While encoding "cat", the model attends to "sat" and "mat"
+- Captures **contextual meaning** regardless of word position
+
+---
+
+### **4️⃣ Multi-Head Attention:**
+
+```mermaid
+graph TD
+    A[Input] --> B[Head 1<br>Syntax]
+    A --> C[Head 2<br>Semantics]
+    A --> D[Head 3<br>Position]
+    A --> E[Head N<br>Relationships]
+    
+    B --> F[Concatenate]
+    C --> F
+    D --> F
+    E --> F
+    F --> G[Linear Transform]
+    G --> H[Output]
+```
+
+Multiple attention heads capture **different types of relationships** simultaneously.
+
+---
+
+### **5️⃣ Advantages Over Recurrent Models:**
+
+| **Aspect** | **Transformer (Self-Attention)** | **Recurrent Models (RNN/LSTM)** |
+|------------|----------------------------------|----------------------------------|
+| **Parallelization** | Processes all words simultaneously | Processes one word at a time |
+| **Long-term Dependencies** | Direct connections between all words | Struggles with long sequences |
+| **Training Speed** | Much faster due to parallel computation | Slower due to recurrence |
+| **Gradient Flow** | Stable gradients across all positions | Vanishing/exploding gradients |
+
+---
+
+### **6️⃣ Visual Comparison:**
+
+```mermaid
+flowchart TD
+    subgraph RNN[RNN/LSTM Approach]
+        A[Word 1] --> B[Word 2]
+        B --> C[Word 3]
+        C --> D[...]
+        D --> E[Word N]
+        
+        style A fill:#ffebee
+        style E fill:#ffebee
+    end
+    
+    subgraph Transformer[Transformer Approach]
+        F[Word 1] --> G[All-to-All<br>Connections]
+        H[Word 2] --> G
+        I[Word 3] --> G
+        J[Word N] --> G
+        G --> K[Global Context<br>for each word]
+        
+        style F fill:#e8f5e8
+        style H fill:#e8f5e8
+        style I fill:#e8f5e8
+        style J fill:#e8f5e8
+    end
+```
+
+---
+
+### **7️⃣ Applications:**
+
+- **NLP:** BERT, GPT, T5
+- **Vision:** Vision Transformers (ViT)
+- **Speech:** Audio Transformers
+- **Multimodal:** CLIP, DALL-E
+
+---
+
+### **8️⃣ Key Idea:**
+
+> **Self-Attention** lets each word see every other word directly, enabling better context understanding and faster, more accurate sequence modeling.
+
+---
+
+## **🎯 Summary:**
+
+- **GAN:** Two networks (Generator + Discriminator) in an adversarial setup to generate realistic data
+- **Transformer:** Uses **self-attention** to model relationships between all sequence elements efficiently — replacing recurrence
+
+---
+
 
 
 
