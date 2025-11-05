@@ -531,22 +531,21 @@ flowchart TD
 #### **Training Process:**
 ```mermaid
 flowchart TD
-    subgraph Step1[Step 1: Train Discriminator]
-        A1[Real Data x] --> B1[Discriminator D]
-        A2[Fake Data Gz] --> B1
-        B1 --> C1[Real/Fake Prediction]
-        C1 --> D1[Update D to improve classification]
-    end
+    %% Step 1: Train Discriminator
+    A1[Real Data x] --> B1[Discriminator D]
+    A2[Fake Data Gz] --> B1
+    B1 --> C1[Real/Fake Prediction]
+    C1 --> D1[Update D to improve classification]
     
-    subgraph Step2[Step 2: Train Generator]
-        E[Random Noise z] --> F[Generator G]
-        F --> G[Fake Data Gz]
-        G --> H[Discriminator D]
-        H --> I[Prediction D(Gz)]
-        I --> J[Update G to fool D]
-    end
+    %% Step 2: Train Generator  
+    E[Random Noise z] --> F[Generator G]
+    F --> G[Fake Data Gz]
+    G --> H[Discriminator D]
+    H --> I[Prediction D(Gz)]
+    I --> J[Update G to fool D]
     
-    Step1 --> Step2
+    %% Connect the steps
+    D1 -.->|Next iteration| E
 ```
 
 **Mathematical Formulation - Min-Max Game:**
