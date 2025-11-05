@@ -7,12 +7,11 @@
 
 ### **1️⃣ Definition:**
 
-An **Autoencoder** is a type of **neural network** used for **unsupervised learning** that aims to **learn a compressed (latent) representation** of the input data and then **reconstruct it** as accurately as possible.
+**Autoencoders** are a special type of neural networks that learn to compress data into a compact form and then reconstruct it to closely match the original input. They consist of an:
 
-It consists of two main parts:
-
-- **Encoder:** Compresses the input into a lower-dimensional representation (latent space)
-- **Decoder:** Reconstructs the input from this compressed representation
+**Encoder** that captures important features by reducing dimensionality.
+**Decoder** that rebuilds the data from this compressed representation.
+The model trains by minimizing reconstruction error using loss functions like Mean Squared Error or Binary Cross-Entropy. These are applied in tasks such as noise removal, error detection and feature extraction where capturing efficient data representations is important.
 
 ---
 
@@ -22,7 +21,7 @@ It consists of two main parts:
 Input → Encoder → Bottleneck → Decoder → Output (Reconstruction)
 ```
 
-- The **bottleneck layer** is the **compressed latent space** that forces the model to learn only the most **relevant features** of the input data
+-The **bottleneck layer** is the compressed latent representation that stores only the essential features of the input, forcing the Autoencoder to learn efficient and meaningful data representations.
 
 ---
 
