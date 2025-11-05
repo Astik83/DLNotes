@@ -640,8 +640,6 @@ flowchart TD
     end
 ```
 
----
-
 ### **3️⃣ Concept of Self-Attention:**
 
 Self-Attention allows the model to **weigh the importance of different words** in a sequence **relative to each other** when encoding a word.
