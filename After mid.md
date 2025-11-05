@@ -412,91 +412,69 @@ Using **ResNet50 pre-trained on ImageNet** to classify **medical X-ray images**:
 
 ---
 
-# **Q6. Define Domain Adaptation. How does it differ from standard Transfer Learning? Provide one real-world example where domain adaptation is beneficial.**
+# 🎯 Q6. Domain Adaptation
 
 ---
 
-## **Answer:**
+## 📚 **Definition**
 
-### **1️⃣ Definition:**
-
-**Domain Adaptation** is a subfield of Transfer Learning where the **source and target tasks are the same**, but the **data distributions are different**.
-
-**Formally:**
-```
-P_source(X) ≠ P_target(X)  but  Task_source = Task_target
-```
+**Domain Adaptation** is a specialized form of **Transfer Learning** where a model trained on a **source domain (𝒟ₛ)** is adapted to perform well on a **target domain (𝒟ₜ)** with **different data distributions** but the **same task**.
 
 ---
 
-### **2️⃣ Key Differences:**
+## 🧮 **Mathematical Intuition**
 
-```mermaid
-flowchart LR
-    subgraph TransferLearning[Transfer Learning]
-        A[Source Domain & Task<br>e.g. ImageNet Classification] --> 
-        B[Knowledge Transfer] --> 
-        C[Target Domain & Task<br>e.g. Medical Diagnosis<br>Different Task]
-    end
-    
-    subgraph DomainAdaptation[Domain Adaptation]
-        D[Source Domain<br>e.g. Synthetic Images] --> 
-        E[Domain Alignment] --> 
-        F[Target Domain<br>e.g. Real Images<br>Same Task: Object Detection]
-    end
-    
-    style TransferLearning fill:#fff3e0
-    style DomainAdaptation fill:#e8f5e8
+**Source Domain:** `Pₛ(X, Y)`  
+**Target Domain:** `Pₜ(X, Y)`
+
+**Key Insight:**
 ```
+Pₛ(Y|X) ≈ Pₜ(Y|X)    (Same task)
+Pₛ(X) ≠ Pₜ(X)        (Different distributions)
+```
+
+**Goal:** Minimize distribution difference between `Pₛ(X)` and `Pₜ(X)` by learning a **shared feature space**.
 
 ---
 
-### **3️⃣ Detailed Comparison:**
+## ⚙️ **How It Works**
+
+- Makes **feature representations** of both domains **indistinguishable**
+- Common methods:
+  - **Adversarial training** (DANN)
+  - **Feature alignment** (MMD)
+  - **Shared latent space** via autoencoders
+
+---
+
+## 📊 **vs. Standard Transfer Learning**
 
 | **Aspect** | **Transfer Learning** | **Domain Adaptation** |
-|------------|----------------------|----------------------|
-| **Task** | Source and target tasks can be different | Task remains the same |
-| **Focus** | Transfer general knowledge | Adapt to distribution shift |
-| **Data** | Different tasks, may have different distributions | Same task, different distributions |
-| **Goal** | Leverage pre-trained features | Align source and target domains |
+|------------|---------------------|---------------------|
+| **Task** | Can be same/different | Always same |
+| **Domain Similarity** | Usually similar | Intentionally different |
+| **Target Labels** | Labeled data needed | Often unlabeled |
+| **Primary Goal** | Reuse features | Align distributions |
+| **Example** | ImageNet → Medical images | Synthetic → Real road images |
 
 ---
 
-### **4️⃣ Domain Adaptation Techniques:**
+## 🚗 **Real-World Example**
 
-- **Feature Alignment:** MMD loss, CORAL
-- **Adversarial Learning:** Domain-Adversarial Neural Networks
-- **Self-training:** Pseudo-labeling on target domain
-
----
-
-### **5️⃣ Real-World Example:**
-
-```mermaid
-flowchart TD
-    A[Synthetic Driving Images<br>Clean, perfect conditions] --> 
-    B[Domain Adaptation<br>Feature Distribution Alignment]
-    
-    C[Real-world Driving Images<br>Noise, weather, lighting variations] --> 
-    B --> 
-    D[Adapted Model<br>Works in both domains]
-    
-    style A fill:#ffebee
-    style C fill:#ffebee
-    style D fill:#e8f5e8
-```
-
-**Autonomous Driving:**
-- **Source Domain:** Synthetic driving images (clean, perfect conditions)
-- **Target Domain:** Real-world driving images (noise, weather, lighting variations)
-- **Challenge:** Model trained on synthetic data fails in real world due to domain shift
-- **Solution:** Domain adaptation aligns feature distributions between synthetic and real images
+**Self-driving car vision system:**
+- **Source:** Synthetic sunny road images (labeled)
+- **Target:** Real rainy/night images (unlabeled)
+- **Benefit:** Model works in all conditions without expensive real-world labeling
 
 ---
 
-### **6️⃣ Key Takeaway:**
+## 💡 **Key Takeaway**
 
-> **Transfer Learning** focuses on transferring knowledge between **different tasks**, while **Domain Adaptation** focuses on **reducing distribution gaps** for the **same task**.
+> Domain Adaptation bridges the **distribution gap** between different data environments while keeping the **task unchanged** — enabling models to generalize across domains with minimal target labels.
+
+---
+
+**Perfect for handling real-world data shifts!** 🌟
 
 ---
 # **Q7. Describe the architecture and working principle of a Generative Adversarial Network (GAN). Explain the roles of the Generator and the Discriminator.**
