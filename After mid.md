@@ -10,7 +10,9 @@
 **Autoencoders** are a special type of neural networks that learn to compress data into a compact form and then reconstruct it to closely match the original input. They consist of an:
 
 **Encoder** that captures important features by reducing dimensionality.
+
 **Decoder** that rebuilds the data from this compressed representation.
+
 The model trains by minimizing reconstruction error using loss functions like Mean Squared Error or Binary Cross-Entropy. These are applied in tasks such as noise removal, error detection and feature extraction where capturing efficient data representations is important.
 
 ---
