@@ -512,11 +512,11 @@ flowchart TD
     F --> G[Update Generator (minimize log(1 - D(G(z))))]
     F --> H[Update Discriminator (maximize log D(x) + log(1 - D(G(z))))]
     
-    style B fill:#e8f5e8,stroke:#2e7d32,stroke-width:1px
-    style E fill:#ffebee,stroke:#c62828,stroke-width:1px
     style A fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    style B fill:#e8f5e8,stroke:#2e7d32,stroke-width:1px
+    style C fill:#f1f8e9,stroke:#558b2f,stroke-width:1px
     style D fill:#f3e5f5,stroke:#6a1b9a,stroke-width:1px
-
+    style E fill:#ffebee,stroke:#c62828,stroke-width:1px
 ```
 
 1. **Generator (G):**
