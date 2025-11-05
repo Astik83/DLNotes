@@ -466,6 +466,11 @@ Pₛ(X) ≠ Pₜ(X)        (Different distributions)
 - **Target:** Real rainy/night images (unlabeled)
 - **Benefit:** Model works in all conditions without expensive real-world labeling
 
+- A self-driving car model trained on sunny-day road images (source)
+may fail in rainy/night conditions (target) because of domain shift.
+
+👉 Domain Adaptation aligns both domains so the model performs well in all weather conditions — even without labeled rainy images.
+
 ---
 
 ## 💡 **Key Takeaway**
