@@ -102,59 +102,140 @@ This helps the network learn robust, meaningful, and generalized feature represe
 
 ---
 
-## **Comparison Table:**
 
-| **Type** | **Architecture** | **Regularization Technique** | **Objective** |
-|----------|------------------|------------------------------|---------------|
-| **Sparse Autoencoder** | Standard encoder-decoder with sparsity constraint | Adds sparsity penalty using KL divergence: `Ω = Σ KL(ρ ‖ ρ̂_j)` | Learn distinct, independent features |
-| **Denoising Autoencoder** | Trained on noisy input, outputs clean reconstruction | Input corruption: `x̃ = x + noise` | Learn robust, noise-resistant features |
-| **Variational Autoencoder** | Encoder outputs distribution parameters (μ, σ) | KL divergence between latent distribution and Normal prior | Learn generative latent space for data generation |
+
+# 🧮 Comparison of Regularized Autoencoders
+
+## 📊 Quick Overview
+
+| Type | Regularization Method | Key Idea | Applications |
+|------|----------------------|----------|--------------|
+| **Sparse AE** | KL divergence on activations | Force sparse hidden representations | Feature learning, Dimensionality reduction |
+| **Denoising AE** | Input corruption | Learn robust features | Robust feature extraction, Data denoising |
+| **VAE** | Latent space distribution matching | Probabilistic generative model | Data generation, Representation learning |
 
 ---
 
-### **2️⃣ Mathematical Details:**
+## 1. Sparse Autoencoder (SAE)
 
-#### **Sparse Autoencoder:**
+### 🏗️ Architecture
 ```
-Loss = Reconstruction Loss + λ * Sparsity Penalty
-Ω = Σ[ρ * log(ρ/ρ̂_j) + (1-ρ) * log((1-ρ)/(1-ρ̂_j))]
-```
-
-#### **Denoising Autoencoder:**
-```
-Input: x̃ = corrupt(x)
-Target: reconstruct original x
-Loss = ||x - x̂||²
+Input → Encoder → Sparse Bottleneck (few active neurons) → Decoder → Reconstruction
 ```
 
-#### **Variational Autoencoder:**
+### 📐 Mathematical Formulation
+
+**Loss Function:**
 ```
-Loss = Reconstruction Loss + KL Divergence
-L = E[log p(x|z)] - KL(q(z|x) || p(z))
+L = L_reconstruction + λ · L_sparsity
 ```
+
+**Components:**
+```math
+L = ‖X - X̂‖² + λ · ∑_{j=1}^{n} KL(ρ ‖ ρ̂_j)
+```
+
+**Where:**
+- `X`: Input data
+- `X̂`: Reconstructed output
+- `λ`: Regularization weight
+- `ρ`: Desired activation probability (small, e.g., 0.05)
+- `ρ̂_j`: Actual activation probability of hidden unit j
+
+**KL Divergence Term:**
+```math
+KL(ρ ‖ ρ̂_j) = ρ · log(ρ/ρ̂_j) + (1-ρ) · log((1-ρ)/(1-ρ̂_j))
+```
+
+### 🎯 Goal & Explanation
+- **Forces only a few neurons to activate** in the hidden layer
+- Learns **distinct, meaningful features**
+- Prevents the network from simply learning identity function
+
+---
+
+## 2. Denoising Autoencoder (DAE)
+
+### 🏗️ Architecture
+```
+Corrupted Input (X̃) → Encoder → Bottleneck → Decoder → Clean Reconstruction (X̂)
+```
+
+### 📐 Mathematical Formulation
+
+**Loss Function:**
+```math
+L = ‖X - D(E(X̃))‖²
+```
+
+**Where:**
+- `X`: Original clean input
+- `X̃`: Corrupted version of input
+- `E`: Encoder function
+- `D`: Decoder function
+
+**Corruption Methods:**
+- **Gaussian noise**: `X̃ = X + ε` where `ε ∼ N(0, σ²I)`
+- **Masking noise**: Randomly set some inputs to zero
+- **Salt-and-pepper**: Random extreme values
+
+### 🎯 Goal & Explanation
+- Learns **robust features** that are invariant to noise
+- Must **capture data structure** to recover clean data
+- Useful for **data cleaning** and **robust feature extraction**
+
+---
+
+## 3. Variational Autoencoder (VAE)
+
+### 🏗️ Architecture
+```
+Input → Encoder → (μ, σ) → Sample z ∼ N(μ, σ²) → Decoder → Reconstruction
+```
+
+### 📐 Mathematical Formulation
+
+**Loss Function:**
+```math
+L = E_{q(z|X)}[log p(X|z)] - KL(q(z|X) ‖ p(z))
+```
+
+**Components:**
+
+1. **Reconstruction Loss:**
+   ```math
+   L_{recon} = E_{q(z|X)}[log p(X|z)]
+   ```
+   - Measures how well we reconstruct input X from latent z
+
+2. **KL Regularization:**
+   ```math
+   L_{KL} = KL(q(z|X) ‖ N(0, I))
+   ```
+   - Forces latent distribution to match standard normal
 
 **Reparameterization Trick:**
-```
+```math
 z = μ + σ ⊙ ε, where ε ∼ N(0, I)
 ```
 
----
-
-### **3️⃣ Summary:**
-
-| **Autoencoder Type** | **Goal** | **Special Property** |
-|---------------------|----------|----------------------|
-| Sparse AE | Learn compact, interpretable features | Enforces sparsity using KL divergence |
-| Denoising AE | Learn noise-robust representation | Reconstructs clean input from noisy data |
-| Variational AE | Learn generative latent space | Produces new samples, uses reparameterization |
+### 🎯 Goal & Explanation
+- Learns **probabilistic latent space**
+- Can **generate new data** by sampling from latent space
+- Provides **continuous, structured latent representations**
 
 ---
 
-### **4️⃣ Key Takeaways:**
+## 🔑 Key Differences Summary
 
-- Regularization prevents overfitting and helps extract **useful representations**
-- **VAE** is the foundation for **modern generative models** like **GANs** and **Transformers**
-- These autoencoders are used in **feature extraction**, **image restoration**, **data generation**, and **representation learning**
+| Aspect | Sparse AE | Denoising AE | VAE |
+|--------|-----------|--------------|-----|
+| **Regularization** | Hidden activations | Input corruption | Latent distribution |
+| **Latent Space** | Deterministic | Deterministic | Probabilistic |
+| **Generation** | ❌ No | ❌ No | ✅ Yes |
+| **Training Goal** | Sparse features | Robust features | Likelihood + Regularity |
+
+
 
 
   # **Q3. Explain the concept of Greedy Layer-wise Unsupervised Pre-Training. How does it help in training deep neural networks effectively compared to end-to-end training?**
