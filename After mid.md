@@ -335,52 +335,99 @@ flowchart TD
 
 ## **Answer:**
 
-### **Comparison Table:**
+# 🎯 Q5. Differentiate between Feature Extraction and Fine-Tuning in Transfer Learning
+
+---
+
+## 📚 **Definition**
+
+**Transfer Learning** is a deep learning technique where a **pre-trained model** (usually trained on a large dataset like **ImageNet**) is reused for a **new but related task**. It helps in **reducing training time**, **computational cost**, and **data requirements**.
+
+There are two major approaches to Transfer Learning — **Feature Extraction** and **Fine-Tuning**.
+
+---
+
+## 🧩 **1. Feature Extraction**
+
+### **Concept:**
+- The **pre-trained model acts as a fixed feature extractor**
+- **Convolutional layers are frozen** (weights not updated during training)
+- Only the **newly added classification layer(s)** are trained on the new dataset
+
+### **Example:**
+Using **VGG16 pre-trained on ImageNet** to classify **medical images**:
+- Keep all convolutional layers **fixed**
+- Remove final 1000-class layer
+- Add new **Dense output layer** for classes like *Tumor* / *Normal*
+- Train **only this new layer**
+
+### **When to Use:**
+- New dataset is **small**
+- New task is **similar** to original task
+- Limited computational resources
+
+---
+
+## ⚙️ **2. Fine-Tuning**
+
+### **Concept:**
+- Some or all **pre-trained layers are unfrozen** and retrained on new dataset
+- Model **adjusts learned weights** to better fit the new domain
+- Typically done after feature extraction
+
+### **Example:**
+Using **ResNet50 pre-trained on ImageNet** for **flower classification**:
+- Replace original final layer with new **10-class output layer**
+- **Unfreeze last few convolutional blocks**
+- Retrain them along with new classifier to adapt features for flowers
+
+### **When to Use:**
+- New dataset is **large enough**
+- New task **differs** from original training data
+- Need higher performance than feature extraction
+
+---
+
+## 📊 **Comparison Table**
 
 | **Aspect** | **Feature Extraction** | **Fine-Tuning** |
 |------------|------------------------|-----------------|
-| **Definition** | Use pre-trained model as fixed feature extractor | Unfreeze some layers and continue training |
-| **Layers Trained** | Only newly added classifier layers | Both classifier + some deep layers |
-| **Weights** | Pre-trained weights remain frozen | Pre-trained weights get updated |
-| **Computation** | Low cost | Higher cost |
-| **Data Needed** | Works with small datasets | Needs more data |
-| **Use Case** | Target similar to source domain | Target different from source |
+| **Trainable Layers** | Only new classification layers | Some or all pre-trained layers |
+| **Weights of Pre-trained Layers** | Frozen (not updated) | Partially or fully updated |
+| **Training Time** | Faster (few layers trained) | Slower (more layers trained) |
+| **Dataset Size** | Small dataset | Larger dataset |
+| **Task Similarity** | Best for similar tasks | Suitable for different tasks |
+| **Performance** | Good for similar domains | Better for different/complex domains |
+| **Risk of Overfitting** | Lower | Higher (requires careful regularization) |
+| **Computational Cost** | Lower | Higher |
 
 ---
 
-### **Visual Comparison:**
+## 🎯 **Summary**
 
-```mermaid
-flowchart TD
-    subgraph FeatureExtraction[Feature Extraction Approach]
-        A[Input] --> B[Frozen Pre-trained Layers<br>Weights: Fixed]
-        B --> C[Feature Vector]
-        C --> D[New Trainable Classifier<br>Weights: Updated]
-        D --> E[Output]
-    end
-    
-    subgraph FineTuning[Fine-Tuning Approach]
-        F[Input] --> G[Partially Frozen Layers<br>Some weights fixed]
-        G --> H[Trainable Layers<br>Weights updated]
-        H --> I[New Trainable Classifier<br>Weights updated]
-        I --> J[Output]
-    end
-    
-    style FeatureExtraction fill:#f3e5f5
-    style FineTuning fill:#e3f2fd
-```
+> 🔹 **Feature Extraction** → Reuse pre-trained features; train only final layers  
+> 🔹 **Fine-Tuning** → Retrain deeper layers to adapt features to new data  
+>  
+> Both methods **improve model performance**, **reduce training time**, and **require less data** compared to training from scratch.
 
 ---
 
-### **Examples:**
+## 💡 **Exam Tips**
 
-#### **Feature Extraction:**
-- Use VGG16 → remove last layer → extract 4096-dim features → train SVM classifier
-- **When:** Small flower dataset (1000 images), similar to ImageNet
+### **Key Points to Remember:**
+- **Feature Extraction** = Frozen base + Train new head
+- **Fine-Tuning** = Unfrozen base (partially/fully) + Train new head
+- **Progressive approach**: Often start with feature extraction, then fine-tune if needed
+- **Rule of thumb**: More data → more layers can be fine-tuned
 
-#### **Fine-Tuning:**
-- Unfreeze last 3 layers of ResNet and train on medical images
-- **When:** Large satellite image dataset, different from ImageNet
+### **Common Question Patterns:**
+- "Which method would you use for a small, similar dataset?" → **Feature Extraction**
+- "How to adapt a pre-trained model to a very different domain?" → **Fine-Tuning**
+- "What's the trade-off between these two approaches?" → **Speed vs. Performance**
+
+---
+
+**Ready for the next question on Domain Adaptation?** 🚀
 
 ---
 
