@@ -788,6 +788,74 @@ Here, all the heavy calculations (like gradient updates) are done internally by 
 > * **Keras** → provides an easy way to build and train models using TensorFlow
 > * Together, they make deep learning **faster, easier, and more user-friendly**
 > * Other AI tools like PyTorch, Scikit-learn, and Hugging Face help in different AI tasks (CV, NLP, ML)
+
+
+
+
+
+---
+
+### ⚙️ **Architecture of Transformer**
+
+#### 🟦 1. Input Tokens
+
+* The input (like a sentence) is broken into **tokens** — e.g., “I love AI” → `[I] [love] [AI]`.
+* Each token is represented by a number (ID).
+
+---
+
+#### 🟦 2. Embedding
+
+* Converts each token ID into a **vector of numbers** (dense representation).
+* Helps the model understand **meaning and relationships** between words.
+
+📘 Example:
+“I” → `[0.2, 0.7, 0.1]`,
+“love” → `[0.9, 0.3, 0.8]`.
+
+---
+
+#### 🟩 3. Multi-Head Attention
+
+* The **heart of the transformer**.
+* It helps each word **look at (attend to)** other words to understand context.
+
+💡 Example:
+In “I ate an apple because I was hungry” —
+the word **“I”** should connect more with **“was hungry”** than **“apple”**.
+
+**Multi-Head** means the model looks at context in **multiple ways (heads)** simultaneously.
+
+---
+
+#### 🟨 4. Feed-Forward Network
+
+* A simple **neural network** applied to each token’s output from the attention step.
+* It **refines** the learned information and adds more complexity.
+
+---
+
+#### 🟧 5. Residual Connection + Layer Normalization
+
+* **Residual Connection:** Adds the input back to the output → helps prevent information loss.
+  (Output = Input + Processed Output)
+* **Layer Normalization:** Keeps activations stable and training smooth.
+
+Together, they make learning **faster, more stable, and prevent vanishing gradients**.
+
+---
+
+### 🧩 In Short
+
+| Step | Name                  | Purpose                                 |
+| ---- | --------------------- | --------------------------------------- |
+| 1    | Input Tokens          | Break text into pieces                  |
+| 2    | Embedding             | Convert to vector form                  |
+| 3    | Multi-Head Attention  | Understand relationships between tokens |
+| 4    | Feed Forward          | Add complexity to learned features      |
+| 5    | Residual + Layer Norm | Stabilize and retain original info      |
+
+
 ```
 
 
