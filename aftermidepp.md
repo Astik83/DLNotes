@@ -130,6 +130,8 @@ Individual cognition refers to how a person thinks, learns, and processes inform
 
 Team dynamics refers to the patterns of interaction, communication, and relationships among members working together toward a common goal.
 
+**Explain what things make a team work well together.**
+
 **Dynamics of teamwork:**
 - **Roles and responsibilities:** Clear division of work avoids confusion.
 - **Communication:** Open and honest communication builds trust.
