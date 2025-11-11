@@ -124,14 +124,18 @@ An **ethical dilemma** is a situation where a person faces two or more conflicti
 ### **12. Discuss the role of professional societies (such as IEEE, ASME, IEI, or ISHRAE) in promoting ethical behavior among engineers.**
 
 **Answer:**
-Professional societies guide engineers toward ethical conduct by:
 
-* Establishing **codes of ethics** for members.
-* Conducting **training and seminars** on professional responsibility.
-* Promoting **honesty, fairness, and accountability** in practice.
-* Encouraging **public safety and welfare** as top priorities.
-* Taking **disciplinary actions** against unethical behavior.
-  These societies help maintain professional integrity and public trust in engineers.
+
+Professional societies play an important role in promoting ethical behavior among engineers.
+
+* They **establish a code of ethics** that defines how engineers should act in professional situations — emphasizing honesty, fairness, and respect.
+* They **conduct seminars, workshops, and training programs** to spread awareness about ethical responsibilities and real-life ethical issues.
+* They **promote honesty, transparency, and accountability** in professional practice to build trust between engineers, clients, and society.
+* They **encourage public safety and welfare** to be given the highest priority in all engineering decisions.
+* They also **take disciplinary actions** against members who violate ethical standards, ensuring professional discipline.
+
+Overall, these societies help engineers maintain **professional integrity**, ensure **public confidence**, and strengthen the **reputation of the engineering profession**.
+
 
 ---
 
