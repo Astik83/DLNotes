@@ -258,11 +258,11 @@ Multicultural teams consist of members from different cultural and social backgr
 Feedback is a vital part of communication where the receiver responds to the sender’s message. In groups, it helps improve coordination and understanding.
 
 **Significance:**
-- **Ensures clarity:** Confirms that the message is correctly understood.
-- **Improves performance:** Members learn from mistakes and improve.
-- **Encourages participation:** Makes people feel valued and heard.
-- **Strengthens relationships:** Promotes trust and openness within the group.
-- **Increases productivity:** Helps align everyone toward common goals.
+- **Ensures clarity:**Feedback helps confirm whether the information shared was understood correctly.
+- **Improves performance:**Constructive feedback helps members identify their mistakes and areas of improvement.
+- **Encourages participation:** When group members are allowed to share their opinions and feedback, they feel respected and valued
+- **Strengthens relationships:** Open and honest feedback builds trust and transparency among group members.
+- **Increases productivity:** Feedback ensures that everyone is on the same page. By aligning the efforts of all members, it reduces repetition of errors and helps the group achieve goals faster and more effectively
 
 **In short:** Constructive feedback builds a culture of learning and cooperation in teams.
 
