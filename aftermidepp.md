@@ -310,6 +310,14 @@ Disputes over **how tasks are organized or who does what**.
 - **Collaboration:** Work together to find a win-win outcome.
 - **Avoidance:** Used when the issue is minor or will resolve itself.
 - **Mediation:** Involve a neutral person to help resolve serious issues.
+- **Active Listening:**
+Pay full attention to what others are saying and show empathy to understand their perspective.
+
+**Negotiation:**
+Discuss differences calmly and find a solution acceptable to all parties.
+
+**Collaboration:**
+Work together to identify the root cause of the problem and create a win–win solution.
 
 **Conclusion:** Effective conflict management improves understanding, teamwork, and overall performance.
 
