@@ -132,12 +132,29 @@ Team dynamics refers to the patterns of interaction, communication, and relation
 
 **Explain what things make a team work well together.**
 
-**Dynamics of teamwork:**
-- **Roles and responsibilities:** Clear division of work avoids confusion.
-- **Communication:** Open and honest communication builds trust.
-- **Leadership:** Guides and motivates the team toward goals.
-- **Conflict management:** Healthy discussions improve creativity.
-- **Motivation:** Encourages commitment and high performance.
+---
+
+### 1. **Roles and Responsibilities** →
+
+Because if people don’t know their specific job, work gets messy and unorganized.
+
+### 2. **Communication** →
+
+Because teams can’t succeed unless members share ideas and information clearly.
+
+### 3. **Leadership** →
+
+Because every team needs someone to guide and motivate the members toward goals.
+
+### 4. **Conflict Management** →
+
+Because disagreements are natural — handling them calmly keeps the team united.
+
+### 5. **Motivation** →
+
+Because when team members feel valued and encouraged, they perform better.
+
+---
 
 **Understanding group behaviour helps to:**
 - Build cooperation and trust.
