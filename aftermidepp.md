@@ -128,7 +128,7 @@ Individual cognition refers to how a person thinks, learns, and processes inform
 
 **Answer:**
 
-Team dynamics refers to how team members interact, communicate, and work together.
+Team dynamics refers to the patterns of interaction, communication, and relationships among members working together toward a common goal.
 
 **Dynamics of teamwork:**
 - **Roles and responsibilities:** Clear division of work avoids confusion.
