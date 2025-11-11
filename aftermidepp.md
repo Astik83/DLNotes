@@ -289,12 +289,20 @@ Cross-cultural communication competence is the ability to communicate effectivel
 
 **Answer:**
 
-Conflicts in teams occur when there are differences in goals, opinions, or personalities.
+**The different conflict is given below:**
 
-**Types of conflicts:**
-- **Task conflict:** Disagreements about work goals or methods.
-- **Relationship conflict:** Arises due to personal or emotional differences.
-- **Process conflict:** Disputes over how tasks are organized or executed.
+
+**Task Conflict:**
+Disagreement about **work goals or methods**.
+*Example:* Team members argue over which design is better.
+
+**Relationship Conflict:**
+Arises from **personal or emotional clashes** between members.
+*Example:* Misunderstanding or dislike causes tension.
+
+**Process Conflict:**
+Disputes over **how tasks are organized or who does what**.
+*Example:* Members disagree on how to divide the work.
 
 **Conflict management techniques:**
 - **Open communication:** Discuss problems honestly and calmly.
