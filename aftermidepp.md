@@ -191,13 +191,27 @@ Effective communication is the foundation of teamwork. It ensures coordination, 
 
 Negotiation is the process of discussing issues to reach a mutually acceptable solution, while conflict resolution focuses on settling disagreements peacefully.
 
-**Process:**
-1. **Identify the problem:** Understand the cause of disagreement.
-2. **Prepare and plan:** Know your goals and acceptable outcomes.
-3. **Communicate effectively:** Listen to others’ points of view.
-4. **Explore alternatives:** Look for options that satisfy both sides.
-5. **Reach agreement:** Decide on a fair and practical solution.
-6. **Implement and review:** Ensure all parties follow the agreement.
+
+
+### **Process of Conflict Resolution in Teams**
+
+Conflicts are common when people with different opinions, goals, or working styles come together. Effective conflict resolution ensures that differences are handled positively so that teamwork and productivity are not affected. The process of resolving conflicts involves several important steps:
+
+1. **Identify the Problem:**
+   First, understand the **root cause** of the disagreement. 
+2. **Prepare and Plan:**
+   Before discussing the issue, each side should clearly understand their **goals, needs, and acceptable outcomes**. 
+3. **Communicate Effectively:**
+    Each member should **listen carefully** to others’ views without interrupting. This builds understanding and reduces tension.
+
+4. **Explore Alternatives:**
+   Once both sides are heard, the team should **brainstorm different solutions**. The goal is to find a middle path that satisfies everyone’s major concerns.
+
+5. **Reach Agreement:**
+   After considering all options, the team should **agree on a fair and practical solution** that benefits both sides. 
+6. **Implement and Review:**
+   The agreed solution should be **put into action** and later **reviewed** to ensure that it is working effectively. 
+
 
 **Example:** In a project team, developers may want more time for testing, while management wants quick delivery. Through negotiation, both agree to a phased release plan that ensures quality and meets deadlines.
 
